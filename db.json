@@ -1,0 +1,45 @@
+{
+  "velas": [
+    {
+      "nombre": "Vela de Ejemplo",
+      "autor": "Autor Ejemplo",
+      "añoPublicacion": 2023,
+      "imagen": "Ficción",
+      "id": "1"
+    },
+    {
+      "nombre": "sgg",
+      "autor": "segsgsgdg",
+      "añoPublicacion": 1500,
+      "imagen": "b",
+      "id": "88ec"
+    },
+    {
+      "id": "5f93",
+      "nombre": "sdsfddgf",
+      "autor": "sdsgsdg",
+      "añoPublicacion": 1600,
+      "imagen": "sdgsdgsdgsdgsdg"
+    }
+  ],
+  "users": [
+    {
+      "id": "2b06",
+      "nombre": "a",
+      "email": "a@a.cl",
+      "password": "Aaaaaaa1!"
+    },
+    {
+      "id": "3044",
+      "nombre": "angular",
+      "email": "angular@angular.cl",
+      "password": "Angular1!"
+    },
+    {
+      "id": "5432",
+      "nombre": "bbb",
+      "email": "bbb@bbb.cl",
+      "password": "Bbbbbb1!"
+    }
+  ]
+}

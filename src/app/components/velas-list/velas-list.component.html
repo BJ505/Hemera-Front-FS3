@@ -1,0 +1,49 @@
+<div class="wrapper fadeInDown container">
+  <nav class="navbar navbar-expand-sm hemera-navbar">
+    <div class="container-fluid">
+        <ul class="navbar-nav hemera-navbar-effect">
+            <a class="navbar-brand" routerLink="/dashboard">
+                <img src="./img/logo/ICONO.jpg" alt="" width="80" height="80">
+            </a>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/velas">Gestión de Velas</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+  <div *ngIf="role === 'ADMIN'" class="d-flex justify-content-end mb-3">
+    <!-- Botón para agregar un nuevo vela, solo visible para ADMIN -->
+    <button class="btn hemera-primary-button" (click)="agregarNuevoVela()">Agregar Nuevo Vela</button>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3 class="h5">Lista de Velas</h3>
+    </div>
+    <ul *ngIf="velas.length > 0; else noVelas" class="list-group list-group-flush">
+      <li
+        *ngFor="let vela of velas"
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
+        <div>
+          <strong>{{ vela.nombre }}</strong> - {{ vela.precio }}
+        </div>
+        <div *ngIf="role === 'ADMIN'">
+          <!-- Botones de acción solo visibles para ADMIN -->
+          <button class="btn btn-sm hemera-warning-button mx-1" (click)="editarVela(vela.id)">
+            Editar
+          </button>
+          <button class="btn btn-sm hemera-danger-button" (click)="eliminarVela(vela.id)">
+            Eliminar
+          </button>
+        </div>
+      </li>
+    </ul>
+    <ng-template #noVelas>
+      <div class="text-center p-3">
+        <p class="text-muted">No hay velas disponibles.</p>
+      </div>
+    </ng-template>
+  </div>
+</div>

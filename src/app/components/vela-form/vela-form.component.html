@@ -1,0 +1,50 @@
+<div class="wrapper fadeInDown container">
+  <nav class="navbar navbar-expand-sm hemera-navbar">
+    <div class="container-fluid">
+      <ul class="navbar-nav hemera-navbar-effect">
+        <a class="navbar-brand" routerLink="/dashboard">
+          <img src="./img/logo/ICONO.jpg" alt="" width="80" height="80">
+        </a>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/velas">Gestión de Velas</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  <form [formGroup]="velaForm" (ngSubmit)="onSubmit()">
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+    <div class="form-group">
+      <label for="nombre">Título</label>
+      <input id="nombre" formControlName="nombre" class="form-control" />
+      <small *ngIf="velaForm.get('nombre')?.invalid && velaForm.get('nombre')?.touched" class="text-danger">
+        Este campo es obligatorio.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="precio">Precio</label>
+      <input id="precio" formControlName="precio" type="number" class="form-control" />
+      <small *ngIf="velaForm.get('precio')?.invalid && velaForm.get('precio')?.touched" class="text-danger">
+        El año debe ser entre 1000 y 50000.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="imagen">Ruta Imagen</label>
+      <input id="imagen" formControlName="imagen" class="form-control" />
+      <small *ngIf="velaForm.get('imagen')?.invalid && velaForm.get('imagen')?.touched" class="text-danger">
+        Este campo es obligatorio.
+      </small>
+    </div>
+
+    <div class="d-flex justify-content-between mt-3">
+      <!-- Botón de Guardar -->
+      <button type="submit" class="btn btn-primary" [disabled]="velaForm.invalid">Guardar</button>
+      <!-- Botón de Cancelar -->
+      <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
+</div>
+  
