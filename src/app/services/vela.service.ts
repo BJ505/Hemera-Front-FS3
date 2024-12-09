@@ -39,8 +39,8 @@ export class VelaService {
     }
 
     // Eliminar un vela (solo para ADMIN)
-    deleteVela(id: string): Observable<void> {
-        return this.http.delete<void>(`${this.apiUrl}/${id}`, { headers: this.createHeaders() });
+    deleteVela(id: string): Observable<null> {
+        return this.http.delete<null>(`${this.apiUrl}/${id}`, { headers: this.createHeaders() });
     }
 
     login(username: string, password: string): void {
