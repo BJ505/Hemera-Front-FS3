@@ -1,5 +1,5 @@
 # Usa Node.js para construir la aplicación Angular
-FROM node:18 as build
+FROM node:18 AS build
 
 # Establece el directorio de trabajo
 WORKDIR /app

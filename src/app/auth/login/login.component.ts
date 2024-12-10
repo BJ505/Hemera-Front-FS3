@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     if (this.loginForm.valid) {
         const { username, password } = this.loginForm.value;
-        // alert(`Inicio de sesión exitoso como ${username} y contraseña ${password}`);
         // Llamar al servicio de login
         this.velaService.login(username, password);
 
