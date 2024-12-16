@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VelaService, Vela } from '../../services/vela.service';
+import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -12,17 +13,18 @@ import { Router } from '@angular/router';
 })
 export class VelasListComponent implements OnInit {
     velas: Vela[] = [];
-    role: string = ''; // Rol del usuario actual
+    rol: string = ''; // Rol del usuario actual
 
     constructor(
         private velaService: VelaService,
+        private authService: AuthService,
         private router: Router
     ) {}
 
     ngOnInit(): void {
         // Obtener el rol actual del usuario
-        this.role = this.velaService.getRole();
-        console.log('Rol del usuario:', this.role); // Depuración
+        this.rol = this.authService.getRol();
+        console.log('Rol del usuario:', this.rol); // Depuración
         this.cargarVelas();
     }
     
@@ -43,7 +45,7 @@ export class VelasListComponent implements OnInit {
 
     // Editar un vela (solo para ADMIN)
     editarVela(id: string): void {
-        if (this.role === 'ADMIN') {
+        if (this.rol === 'ADMIN') {
             this.router.navigate(['/velas/editar', id]);
         } else {
             alert('No tienes permisos para editar velas.');
@@ -52,7 +54,7 @@ export class VelasListComponent implements OnInit {
 
     // Eliminar un vela (solo para ADMIN)
     eliminarVela(id: string): void {
-        if (this.role === 'ADMIN') {
+        if (this.rol === 'ADMIN') {
             if (confirm('¿Estás seguro de que quieres eliminar este vela?')) {
                 this.velaService.deleteVela(id).subscribe({
                     next: () => {
@@ -72,7 +74,7 @@ export class VelasListComponent implements OnInit {
 
     // Agregar un nuevo vela (solo para ADMIN)
     agregarNuevoVela(): void {
-        if (this.role === 'ADMIN') {
+        if (this.rol === 'ADMIN') {
             this.router.navigate(['/velas/nuevo']);
         } else {
             alert('No tienes permisos para agregar velas.');

@@ -42,35 +42,6 @@ export class VelaService {
     deleteVela(id: string): Observable<null> {
         return this.http.delete<null>(`${this.apiUrl}/${id}`, { headers: this.createHeaders() });
     }
-
-    login(username: string, password: string): void {
-        // alert(`antes de send headers ${username} y contraseña ${password}`)
-        const headers = new HttpHeaders({
-            Authorization: `Basic ${btoa(`${username}:${password}`)}`, // Codificar credenciales
-        });
-    
-        this.http.get(this.apiUrl, { headers }).subscribe({
-            next: () => {
-                // Corrige la asignación del rol
-                if (username === 'admin') {
-                    this.role = 'ADMIN'; // Rol de admin
-                } else if (username === 'user') {
-                    this.role = 'USER'; // Rol de usuario normal
-                } else {
-                    this.role = ''; // Usuario no reconocido
-                }
-                localStorage.setItem('userRole', this.role); // Guarda el rol en localStorage
-                localStorage.setItem('username', username); // Guarda el nombre de usuario
-            },
-            error: (err) => {
-                console.error('Error al iniciar sesión:', err);
-                this.role = '';
-                localStorage.removeItem('userRole'); // Limpia el rol en caso de error
-                localStorage.removeItem('username'); // Limpia el usuario en caso de error
-            },
-        });
-    }
-    
     
     // Método para recuperar el rol del usuario desde localStorage
     getRole(): string {
@@ -86,9 +57,10 @@ export class VelaService {
     }
     // Crear encabezados con autenticación básica
     private createHeaders(): HttpHeaders {
-        const username = 'admin'; // Credenciales del back-end
-        const password = 'admin123';
+        const username = localStorage.getItem('userName'); // Credenciales del back-end
+        const password = localStorage.getItem('userPassword');
         const auth = btoa(`${username}:${password}`);
+
         return new HttpHeaders({
             Authorization: `Basic ${auth}`,
         });

@@ -12,7 +12,7 @@
     </div>
 </nav>
 
-  <div *ngIf="role === 'ADMIN'" class="d-flex justify-content-end mb-3">
+  <div *ngIf="rol === 'ADMIN'" class="d-flex justify-content-end mb-3">
     <!-- Botón para agregar un nuevo vela, solo visible para ADMIN -->
     <button class="btn hemera-primary-button" (click)="agregarNuevoVela()">Agregar Nuevo Vela</button>
   </div>
@@ -29,7 +29,7 @@
         <div>
           <strong>{{ vela.nombre }}</strong> - {{ vela.precio }}
         </div>
-        <div *ngIf="role === 'ADMIN'">
+        <div *ngIf="rol === 'ADMIN'">
           <!-- Botones de acción solo visibles para ADMIN -->
           <button class="btn btn-sm hemera-warning-button mx-1" (click)="editarVela(vela.id)">
             Editar

@@ -23,7 +23,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.registerForm = this.fb.group({
       nombre: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
       password: ['', [
         Validators.required,
         Validators.minLength(8),
@@ -35,8 +34,8 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     if (this.registerForm.valid) {
-      const { nombre, email, password } = this.registerForm.value;
-      const newUser = { nombre, email, password };
+      const { username, password, rol } = this.registerForm.value;
+      const newUser = { username, password, rol };
 
       this.authService.register(newUser).subscribe({
         next: () => {

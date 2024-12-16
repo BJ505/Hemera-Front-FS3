@@ -246,10 +246,13 @@ a {
     -moz-animation-delay: 1s;
     animation-delay: 1s;
   }
+
+  .underlineHover{
+    color: #EFDE96 !important;
+  }
   
   /* Simple CSS3 Fade-in Animation */
   .underlineHover:after {
-      color: #333333;
       display: block;
       left: 0;
       bottom: -10px;
@@ -261,7 +264,8 @@ a {
   }
   
   .underlineHover:hover {
-      color: #5fbae9;
+    color: #5fbae9 !important;
+    cursor: pointer;
   }
   
   .underlineHover:hover:after{

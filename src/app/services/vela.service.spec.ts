@@ -1,18 +1,21 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { VelaService, Vela } from './vela.service';
+import { AuthService } from './auth.service';
 
 describe('VelaService', () => {
   let service: VelaService;
+  let authService: AuthService;
   let httpMock: HttpTestingController;
   const apiUrl = 'http://localhost:9090/api/velas';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [VelaService],
+      providers: [VelaService,AuthService],
     });
     service = TestBed.inject(VelaService);
+    authService = TestBed.inject(AuthService);
     httpMock = TestBed.inject(HttpTestingController);
   });
 
@@ -95,10 +98,10 @@ describe('VelaService', () => {
   });
 
   it('debería manejar el login correctamente', () => {
-    const username = 'admin';
-    const password = 'admin123';
+    const username = 'Byron';
+    const password = '12345678';
 
-    service.login(username, password);
+    authService.login(username, password);
 
     const req = httpMock.expectOne(apiUrl);
     expect(req.request.method).toBe('GET');
